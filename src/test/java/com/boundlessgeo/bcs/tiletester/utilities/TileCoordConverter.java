@@ -28,6 +28,8 @@ public class TileCoordConverter {
 	private Double resolution(Integer zoom){
 		return initialResolution / (Math.pow(2, zoom));
 	}
-	
+	public String getTMSTileAddressString(Integer z, Pixel tile) {
+		return "/"+tile.getX().intValue()+"/" + tile.getY().intValue() + "/"+z+".png";
+	}
 
 }
