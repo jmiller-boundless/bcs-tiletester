@@ -43,8 +43,9 @@ public class DBUtilities {
     public ResultSet ExecuteSQLQuery(String sql_stmt) {
     	ResultSet rs = null;
         try {
-            statement = connection.createStatement();
- 
+        	if(statement==null)
+        		statement = connection.createStatement();
+            
             rs= statement.executeQuery(sql_stmt);
         } catch (SQLException ex) {
             System.out.println("The following error has occured: " + ex.getMessage());
@@ -54,25 +55,12 @@ public class DBUtilities {
     
 
 	
-	public String getByYearAndState(String query, String selectedYear, String selectedState, String filePrefix) {
-		String out = "";
-		try {
-			PreparedStatement ps = getConnection().prepareStatement(query);
-			ps.setInt(1, Integer.parseInt(selectedYear));
-			ps.setString(2,selectedState);
-			ResultSet rs = ps.executeQuery();
-			Date date = new Date();
-			//out = DBUtilities.convertToCsv(rs, Config.path+filePrefix+"_"+selectedYear+"_"+date.getTime()+".csv");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return out + " Finished!";
-	}
+
 	
 	public Pixel getMetersCenterOfRandomFeature(String featureType){
-		String sql = "select st_x(st_centroid(st_transform(geom,900913))) as x, st_y(st_centroid(st_transform(geom,900913))) as y from "+featureType+" offset random() * (select count(*) from "+featureType+") limit 1";
+		String sql = "select st_x(st_centroid(st_transform(way,900913))) as x, st_y(st_centroid(st_transform(way,900913))) as y from "+featureType+" offset random() * (select count(*) from "+featureType+") limit 1";
 		ResultSet rs = ExecuteSQLQuery(sql);
+		
 		Pixel pixel = null;
 		try {
 			while(rs.next()){
@@ -81,6 +69,18 @@ public class DBUtilities {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		try {
+			rs.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
 		}
 		return pixel;
 	}

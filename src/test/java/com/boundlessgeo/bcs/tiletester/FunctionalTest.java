@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.junit.BeforeClass;
 
 import com.boundlessgeo.bcs.tiletester.model.dao.DBUtilities;
+import com.boundlessgeo.bcs.tiletester.utilities.Config;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.specification.RequestSpecification;
@@ -13,7 +14,7 @@ public class FunctionalTest {
 	protected static DBUtilities dbu;
 	@BeforeClass
     public static void setup() {
-        String port = System.getProperty("server.port");
+        String port = Config.prop.getProperty("server.port");
         if (port == null) {
             RestAssured.port = Integer.valueOf(80);
         }
@@ -22,13 +23,13 @@ public class FunctionalTest {
         }
 
 
-        String basePath = System.getProperty("server.base");
+        String basePath = Config.prop.getProperty("server.base");
         if(basePath==null){
             basePath = "";
         }
         RestAssured.basePath = basePath;
 
-        String baseHost = System.getProperty("server.host");
+        String baseHost = Config.prop.getProperty("server.host");
         if(baseHost==null){
             baseHost = "http://b.tile.openstreetmap.org";
         }
