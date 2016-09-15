@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.boundlessgeo.bcs.tiletester.utilities.Config;
 import com.boundlessgeo.bcs.tiletester.utilities.Pixel;
@@ -16,6 +18,7 @@ public class DBUtilities {
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
+    Map<String,Pixel>cachedPixel=new HashMap<String,Pixel>();
  
     public DBUtilities() throws SQLException {
         try {
@@ -58,6 +61,9 @@ public class DBUtilities {
 
 	
 	public Pixel getMetersCenterOfRandomFeature(String featureType){
+		if(cachedPixel.containsKey(featureType)){
+			return cachedPixel.get(featureType);
+		}
 		String sql = "select st_x(st_centroid(st_transform(way,900913))) as x, st_y(st_centroid(st_transform(way,900913))) as y from "+featureType+" offset random() * (select count(*) from "+featureType+") limit 1";
 		ResultSet rs = ExecuteSQLQuery(sql);
 		
@@ -82,6 +88,7 @@ public class DBUtilities {
 			} catch (SQLException e) {
 			}
 		}
+		cachedPixel.put(featureType, pixel);
 		return pixel;
 	}
 	

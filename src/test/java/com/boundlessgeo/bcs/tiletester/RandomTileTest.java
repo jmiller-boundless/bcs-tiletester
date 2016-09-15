@@ -13,6 +13,7 @@ import org.junit.runners.Parameterized;
 
 import com.boundlessgeo.bcs.tiletester.utilities.Pixel;
 import com.boundlessgeo.bcs.tiletester.utilities.TileCoordConverter;
+import com.jayway.restassured.RestAssured;
 @RunWith(Parameterized.class)
 public class RandomTileTest extends FunctionalTest {
 /*    @Test
@@ -77,7 +78,7 @@ public class RandomTileTest extends FunctionalTest {
      	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
      	String gmapaddress = tcc.getGMapAddressString(z, tile);
      	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
      	assertThat(time, lessThan(5000L));
 
      }
@@ -90,7 +91,7 @@ public class RandomTileTest extends FunctionalTest {
      	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
      	String gmapaddress = tcc.getGMapAddressString(z, tile);
      	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
      	assertThat(time, lessThan(5000L));
 
      }
@@ -102,10 +103,10 @@ public class RandomTileTest extends FunctionalTest {
      	
      	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
      	String gmapaddress = tcc.getGMapAddressString(z, tile);
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress);
+     	//System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress);
      	//long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
      	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
      	assertThat(time, lessThan(5000L));
 
      }
@@ -118,7 +119,7 @@ public class RandomTileTest extends FunctionalTest {
      	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
      	String gmapaddress = tcc.getGMapAddressString(z, tile);
      	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
      	assertThat(time, lessThan(5000L));
 
      }
@@ -131,7 +132,7 @@ public class RandomTileTest extends FunctionalTest {
      	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
      	String gmapaddress = tcc.getGMapAddressString(z, tile);
      	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
      	assertThat(time, lessThan(5000L));
 
      }
@@ -144,7 +145,7 @@ public class RandomTileTest extends FunctionalTest {
      	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
      	String gmapaddress = tcc.getGMapAddressString(z, tile);
      	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+     	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
      	assertThat(time, lessThan(5000L));
 
      }
@@ -158,7 +159,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -172,7 +173,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -185,7 +186,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -198,7 +199,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -211,7 +212,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -224,7 +225,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -237,7 +238,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -250,7 +251,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -263,7 +264,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -276,7 +277,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
@@ -289,7 +290,7 @@ public class RandomTileTest extends FunctionalTest {
     	Pixel tile = tcc.metersToTileGoogle(meters.getX(), meters.getY(), z);
     	String gmapaddress = tcc.getGMapAddressString(z, tile);
     	long time = given().when().get(gmapaddress).then().statusCode(200).extract().response().time();
-    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+gmapaddress + " Time To Load: "+time);
+    	System.out.println("Feature Type: "+featureType+" Zoom Level: "+z+" Address: "+RestAssured.baseURI+RestAssured.basePath+gmapaddress + " Time To Load: "+time);
     	assertThat(time, lessThan(5000L));
 
     }
