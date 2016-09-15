@@ -30,6 +30,14 @@ public class DBUtilities {
     }
  
     public Connection getConnection() {
+    	try {
+			if (connection==null||connection.isClosed()){
+	            connection = DriverManager.getConnection(Config.connection_url, Config.prop.getProperty("DATABASE_USER_ID"), Config.prop.getProperty("DATABASE_PASSWORD"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return connection;
     }
  
@@ -46,8 +54,8 @@ public class DBUtilities {
     public ResultSet ExecuteSQLQuery(String sql_stmt) {
     	ResultSet rs = null;
         try {
-        	if(statement==null)
-        		statement = connection.createStatement();
+        	if(statement==null||statement.isClosed())
+        		statement = getConnection().createStatement();
             
             rs= statement.executeQuery(sql_stmt);
         } catch (SQLException ex) {
@@ -64,7 +72,8 @@ public class DBUtilities {
 		if(cachedPixel.containsKey(featureType)){
 			return cachedPixel.get(featureType);
 		}
-		String sql = "select st_x(st_centroid(st_transform(way,900913))) as x, st_y(st_centroid(st_transform(way,900913))) as y from "+featureType+" offset random() * (select count(*) from "+featureType+") limit 1";
+		//String sql = "select st_x(st_centroid(st_transform(way,900913))) as x, st_y(st_centroid(st_transform(way,900913))) as y from "+featureType+" offset random() * (select count(*) from "+featureType+") limit 1";
+		String sql = "select st_x(st_centroid(st_transform(way,900913))) as x, st_y(st_centroid(st_transform(way,900913))) as y from "+featureType+" limit 1";
 		ResultSet rs = ExecuteSQLQuery(sql);
 		
 		Pixel pixel = null;
@@ -76,18 +85,13 @@ public class DBUtilities {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try {
-			rs.close();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}finally{
-			try {
-				rs.close();
-			} catch (SQLException e) {
-			}
+		finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		   // try { statement.close(); } catch (Exception e) { /* ignored */ }
+		   // try { connection.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		
 		cachedPixel.put(featureType, pixel);
 		return pixel;
 	}
